@@ -18,7 +18,8 @@ import {
 } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CssBaseline, ThemeProvider, createTheme } from '@material-ui/core';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { createTheme } from '@mui/material/styles';
 
 const defaultAuth = {
   loggedIn: false,
