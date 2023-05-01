@@ -1,24 +1,18 @@
-import LoadingScreen from './components/LoadingScreen/LoadingScreen';
-import Home from './components/Home/Home';
-import Profile from './components/Profile/Profile';
-import FindJobs from './components/FindJobs/FindJobs';
-import MyApplications from './components/MyApplications/MyApplications';
-import CreateListing from './components/CreateListing/CreateListing';
-import MyListings from './components/MyListings/MyListings';
-import Applications from './components/Applications/Applications';
-import AcceptedEmployees from './components/AcceptedEmployees/AcceptedEmployees';
 import Montserrat from './assets/fonts/Montserrat-Regular.ttf';
+import AcceptedEmployees from './components/AcceptedEmployees/AcceptedEmployees';
+import Applications from './components/Applications/Applications';
+import CreateListing from './components/CreateListing/CreateListing';
+import FindJobs from './components/FindJobs/FindJobs';
+import Home from './components/Home/Home';
+import LoadingScreen from './components/LoadingScreen/LoadingScreen';
+import MyApplications from './components/MyApplications/MyApplications';
+import MyListings from './components/MyListings/MyListings';
+import Profile from './components/Profile/Profile';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { CssBaseline, ThemeProvider, createTheme } from '@material-ui/core';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 const defaultAuth = {
   loggedIn: false,
