@@ -16,10 +16,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
 import Navbar from '../Navbar/Navbar';
-import axios from 'axios';
+
 import swal from 'sweetalert';
 import { AuthContext } from '../../App';
 import './AcceptedEmployees.css';
+import AxiosClient from '../../axios';
 
 const toDt = (dt) => {
   if (!dt) return '--';
@@ -93,12 +94,12 @@ function AcceptedEmployees() {
   const getEmployees = async function () {
     try {
       // Get from backend
-      let applicants = await axios.get(
+      let applicants = await AxiosClient.get(
         `/api/applicant/byrecruiter/${auth.user._id}`
       );
       applicants = applicants.data.applicants;
 
-      let ratings = await axios.get(
+      let ratings = await AxiosClient.get(
         `/api/rating/applicant/byrecruiter/${auth.user._id}`
       );
       ratings = ratings.data.ratings;
@@ -149,8 +150,7 @@ function AcceptedEmployees() {
         'x-auth-token': localStorage.getItem('token'),
       },
     };
-    axios
-      .post(url, data, config)
+    AxiosClient.post(url, data, config)
       .then((response) => {
         swal('Rating changed', '', 'success').then(() => getEmployees());
       })

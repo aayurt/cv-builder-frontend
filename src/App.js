@@ -1,4 +1,5 @@
 import Montserrat from './assets/fonts/Montserrat-Regular.ttf';
+import AxiosClient from './axios';
 import AcceptedEmployees from './components/AcceptedEmployees/AcceptedEmployees';
 import Applications from './components/Applications/Applications';
 import CreateListing from './components/CreateListing/CreateListing';
@@ -10,7 +11,6 @@ import MyListings from './components/MyListings/MyListings';
 import Profile from './components/Profile/Profile';
 
 import { CssBaseline, ThemeProvider, createTheme } from '@material-ui/core';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
@@ -74,8 +74,7 @@ function AppContainer() {
           },
         };
         //setLoading(true);
-        axios
-          .get(url, config)
+        AxiosClient.get(url, config)
           .then((response) => {
             setAuth({
               loggedIn: true,

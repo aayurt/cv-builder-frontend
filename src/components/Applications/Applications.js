@@ -22,6 +22,7 @@ import Navbar from '../Navbar/Navbar';
 import { useParams } from 'react-router-dom';
 import './Applications.css';
 import axios from 'axios';
+import AxiosClient from '../../axios';
 
 const toDt = (dt) => {
   if (!dt) return '--';
@@ -82,13 +83,15 @@ function Applications() {
 
   const getApplications = async function () {
     try {
-      let applications = await axios.get(
+      let applications = await AxiosClient.get(
         `/api/application/bylisting/${listingId}`
       );
       applications = applications.data.applications;
       console.log(applications);
 
-      let applicants = await axios.get(`/api/applicant/bylisting/${listingId}`);
+      let applicants = await AxiosClient.get(
+        `/api/applicant/bylisting/${listingId}`
+      );
       applicants = applicants.data.users;
       console.log(applicants);
 

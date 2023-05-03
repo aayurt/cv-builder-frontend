@@ -13,6 +13,7 @@ import './MyApplications.css';
 import axios from 'axios';
 import { AuthContext } from '../../App';
 import swal from 'sweetalert';
+import AxiosClient from '../../axios';
 
 const toDt = (dt) => {
   if (!dt) return '--';
@@ -131,7 +132,7 @@ function MyApplications() {
 
   useEffect(async function () {
     try {
-      let applications = await axios.get(
+      let applications = await AxiosClient.get(
         `/api/application/byapplicant/${auth.user._id}`
       );
       applications = applications.data.applications;
@@ -140,12 +141,12 @@ function MyApplications() {
         (application) => application.listingId
       );
 
-      let listings = await axios.get('api/listing');
+      let listings = await AxiosClient.get('api/listing');
       listings = listings.data.listings.filter(
         (listing) => appliedListingIds.indexOf(listing._id) !== -1
       );
 
-      let ratings = await axios.get(
+      let ratings = await AxiosClient.get(
         `/api/rating/listing/byapplicant/${auth.user._id}`
       );
       ratings = ratings.data.ratings;

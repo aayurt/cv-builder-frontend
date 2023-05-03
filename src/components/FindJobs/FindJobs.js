@@ -19,6 +19,7 @@ import swal from 'sweetalert';
 import JobListing from '../JobListing/JobListing';
 import './FindJobs.css';
 import { AuthContext } from '../../App';
+import AxiosClient from '../../axios';
 
 const defaultFilters = {
   searchTerm: '',
@@ -51,7 +52,7 @@ function FindJobs() {
 
   const fetchJobs = async function () {
     try {
-      let allListings = await axios.get('/api/listing');
+      let allListings = await AxiosClient.get('/api/listing');
       allListings = allListings.data.listings;
 
       allListings = allListings.filter((listing) => {
@@ -60,7 +61,7 @@ function FindJobs() {
       });
       setMaxSalary(Math.max(...allListings.map((l) => l.salary), 0));
 
-      let myApplications = await axios.get(
+      let myApplications = await AxiosClient.get(
         `/api/application/byapplicant/${auth.user._id}`
       );
       let listingsAppliedTo = myApplications.data.applications.map(
